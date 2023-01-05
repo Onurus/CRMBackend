@@ -9,7 +9,7 @@ import (
 var customerNextIndex int64 = 6
 var customerMap = map[int64]model.Customer{
 	1: {
-		Id:        1,
+		ID:        1,
 		Name:      "Onur Usta",
 		Role:      "Software Engineer",
 		Email:     "onurusta@gmail.com",
@@ -17,7 +17,7 @@ var customerMap = map[int64]model.Customer{
 		Contacted: true,
 	},
 	2: {
-		Id:        2,
+		ID:        2,
 		Name:      "Erkut Yuzgec",
 		Role:      "Software Engineer",
 		Email:     "erkutYz@gmail.com",
@@ -25,7 +25,7 @@ var customerMap = map[int64]model.Customer{
 		Contacted: true,
 	},
 	3: {
-		Id:        3,
+		ID:        3,
 		Name:      "Big Boss",
 		Role:      "Principal Engineer",
 		Email:     "bb@gmail.com",
@@ -33,7 +33,7 @@ var customerMap = map[int64]model.Customer{
 		Contacted: true,
 	},
 	4: {
-		Id:        4,
+		ID:        4,
 		Name:      "Tugce Usta",
 		Role:      "DevOps Engineer",
 		Email:     "tugceUsta@gmail.com",
@@ -41,7 +41,7 @@ var customerMap = map[int64]model.Customer{
 		Contacted: false,
 	},
 	5: {
-		Id:        5,
+		ID:        5,
 		Name:      "Doga Usta",
 		Role:      "Junior Software Engineer",
 		Email:     "dogaUsta@gmail.com",
@@ -59,7 +59,7 @@ func GetAllCustomer(id int64) model.Customer {
 }
 
 func CreateCustomer(newCustomer model.Customer) model.Customer {
-	newCustomer.Id = customerNextIndex
+	newCustomer.ID = customerNextIndex
 	customerMap[customerNextIndex] = newCustomer
 	customerNextIndex++
 	return newCustomer
@@ -70,6 +70,6 @@ func DeleteCustomer(id int64) {
 }
 
 func UpdateCustomer(updatedCustomer model.Customer) model.Customer {
-	customerMap[updatedCustomer.Id] = updatedCustomer
+	customerMap[updatedCustomer.ID] = updatedCustomer
 	return updatedCustomer
 }
