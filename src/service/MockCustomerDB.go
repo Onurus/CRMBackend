@@ -1,9 +1,13 @@
 package service
 
-import "crmbackend/model"
+import (
+	"crmbackend/model"
 
-var customers = []model.Customer{
-	{
+	"golang.org/x/exp/maps"
+)
+
+var customerMap = map[int64]model.Customer{
+	1: {
 		Id:        1,
 		Name:      "Onur Usta",
 		Role:      "Software Engineer",
@@ -11,7 +15,7 @@ var customers = []model.Customer{
 		Phone:     "3661278",
 		Contacted: true,
 	},
-	{
+	2: {
 		Id:        2,
 		Name:      "Erkut Yuzgec",
 		Role:      "Software Engineer",
@@ -19,7 +23,7 @@ var customers = []model.Customer{
 		Phone:     "3661161",
 		Contacted: true,
 	},
-	{
+	3: {
 		Id:        3,
 		Name:      "Big Boss",
 		Role:      "Principal Engineer",
@@ -27,7 +31,7 @@ var customers = []model.Customer{
 		Phone:     "4414596",
 		Contacted: true,
 	},
-	{
+	4: {
 		Id:        4,
 		Name:      "Tugce Usta",
 		Role:      "DevOps Engineer",
@@ -35,7 +39,7 @@ var customers = []model.Customer{
 		Phone:     "5327764108",
 		Contacted: false,
 	},
-	{
+	5: {
 		Id:        5,
 		Name:      "Doga Usta",
 		Role:      "Junior Software Engineer",
@@ -46,5 +50,9 @@ var customers = []model.Customer{
 }
 
 func GetAllCustomers() []model.Customer {
-	return customers
+	return maps.Values(customerMap)
+}
+
+func GetAllCustomer(id int64) model.Customer {
+	return customerMap[id]
 }

@@ -1,7 +1,7 @@
 package model
 
 type Customer struct {
-	Id        uint64 `json:"id"`
+	Id        int64  `json:"id"`
 	Name      string `json:"name"`
 	Role      string `json:"role"`
 	Email     string `json:"email"`
