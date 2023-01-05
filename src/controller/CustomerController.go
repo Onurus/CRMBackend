@@ -12,6 +12,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Expected API methods
 func GetCustomers(responseWriter http.ResponseWriter, request *http.Request) {
 	responseWriter.Header().Set("Content-Type", "application/json")
 	responseWriter.WriteHeader(http.StatusOK)
@@ -57,9 +58,24 @@ func DeleteCustomer(responseWriter http.ResponseWriter, request *http.Request) {
 }
 
 func UpdateCustomer(responseWriter http.ResponseWriter, request *http.Request) {
+	responseWriter.Header().Set("Content-Type", "application/json")
+	headerId := getIdFromRequestHeader(request)
+	existingCustomer := service.GetAllCustomer(headerId)
+
+	if existingCustomer.ID == headerId {
+		var incomingCustomer model.Customer
+		if validateRequestAndParseBody(responseWriter, request, &incomingCustomer) {
+			incomingCustomer = service.UpdateCustomer(incomingCustomer, headerId)
+			responseWriter.WriteHeader(http.StatusCreated)
+			json.NewEncoder(responseWriter).Encode(incomingCustomer)
+		}
+	} else {
+		responseWriter.WriteHeader(http.StatusNotFound)
+	}
 
 }
 
+// Helper functions
 func getIdFromRequestHeader(request *http.Request) int64 {
 	item := mux.Vars(request)
 	headerId, _ := strconv.ParseInt(item["id"], 10, 64)

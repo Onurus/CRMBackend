@@ -69,7 +69,8 @@ func DeleteCustomer(id int64) {
 	delete(customerMap, id)
 }
 
-func UpdateCustomer(updatedCustomer model.Customer) model.Customer {
-	customerMap[updatedCustomer.ID] = updatedCustomer
+func UpdateCustomer(updatedCustomer model.Customer, existingId int64) model.Customer {
+	updatedCustomer.ID = existingId
+	customerMap[existingId] = updatedCustomer
 	return updatedCustomer
 }
