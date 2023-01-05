@@ -17,6 +17,8 @@ func main() {
 	router.HandleFunc("/customers/{id}", controller.DeleteCustomer).Methods("DELETE")
 	router.HandleFunc("/customers/{id}", controller.UpdateCustomer).Methods("PATCH")
 
+	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("../static"))))
+
 	fmt.Println("Server is starting...")
 	http.ListenAndServe(":3000", router)
 }
