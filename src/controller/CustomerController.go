@@ -32,7 +32,7 @@ func GetCustomer(responseWriter http.ResponseWriter, request *http.Request) {
 	}
 }
 
-func CreateCustomer(responseWriter http.ResponseWriter, request *http.Request) {
+func AddCustomer(responseWriter http.ResponseWriter, request *http.Request) {
 	responseWriter.Header().Set("Content-Type", "application/json")
 
 	var customer model.Customer

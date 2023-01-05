@@ -13,7 +13,7 @@ func main() {
 
 	router.HandleFunc("/customers", controller.GetCustomers).Methods("GET")
 	router.HandleFunc("/customers/{id}", controller.GetCustomer).Methods("GET")
-	router.HandleFunc("/customers", controller.CreateCustomer).Methods("POST")
+	router.HandleFunc("/customers", controller.AddCustomer).Methods("POST")
 	router.HandleFunc("/customers/{id}", controller.DeleteCustomer).Methods("DELETE")
 	router.HandleFunc("/customers/{id}", controller.UpdateCustomer).Methods("PATCH")
 
