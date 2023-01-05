@@ -6,6 +6,7 @@ import (
 	"golang.org/x/exp/maps"
 )
 
+var customerNextIndex int64 = 6
 var customerMap = map[int64]model.Customer{
 	1: {
 		Id:        1,
@@ -55,4 +56,20 @@ func GetAllCustomers() []model.Customer {
 
 func GetAllCustomer(id int64) model.Customer {
 	return customerMap[id]
+}
+
+func CreateCustomer(newCustomer model.Customer) model.Customer {
+	newCustomer.Id = customerNextIndex
+	customerMap[customerNextIndex] = newCustomer
+	customerNextIndex++
+	return newCustomer
+}
+
+func DeleteCustomer(id int64) {
+	delete(customerMap, id)
+}
+
+func UpdateCustomer(updatedCustomer model.Customer) model.Customer {
+	customerMap[updatedCustomer.Id] = updatedCustomer
+	return updatedCustomer
 }

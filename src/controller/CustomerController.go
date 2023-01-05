@@ -29,3 +29,15 @@ func GetCustomer(responseWriter http.ResponseWriter, request *http.Request) {
 		responseWriter.WriteHeader(http.StatusNotFound)
 	}
 }
+
+func CreateCustomer(responseWriter http.ResponseWriter, request *http.Request) {
+
+}
+
+func DeleteCustomer(responseWriter http.ResponseWriter, request *http.Request) {
+
+}
+
+func UpdateCustomer(responseWriter http.ResponseWriter, request *http.Request) {
+
+}
