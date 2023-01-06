@@ -28,7 +28,7 @@ func GetCustomer(responseWriter http.ResponseWriter, request *http.Request) {
 		responseWriter.WriteHeader(http.StatusOK)
 		json.NewEncoder(responseWriter).Encode(customer)
 	} else {
-		responseWriter.WriteHeader(http.StatusNotFound)
+		customerNotFound(responseWriter)
 	}
 }
 
@@ -53,7 +53,7 @@ func DeleteCustomer(responseWriter http.ResponseWriter, request *http.Request) {
 		responseWriter.WriteHeader(http.StatusOK)
 		json.NewEncoder(responseWriter).Encode(service.GetAllCustomers())
 	} else {
-		responseWriter.WriteHeader(http.StatusNotFound)
+		customerNotFound(responseWriter)
 	}
 }
 
@@ -70,12 +70,17 @@ func UpdateCustomer(responseWriter http.ResponseWriter, request *http.Request) {
 			json.NewEncoder(responseWriter).Encode(incomingCustomer)
 		}
 	} else {
-		responseWriter.WriteHeader(http.StatusNotFound)
+		customerNotFound(responseWriter)
 	}
 
 }
 
 // Helper functions
+func customerNotFound(responseWriter http.ResponseWriter) {
+	responseWriter.WriteHeader(http.StatusNotFound)
+	json.NewEncoder(responseWriter).Encode(map[string]string{"message": "Customer Not Found!"})
+}
+
 func getIdFromRequestHeader(request *http.Request) int64 {
 	item := mux.Vars(request)
 	headerId, _ := strconv.ParseInt(item["id"], 10, 64)
